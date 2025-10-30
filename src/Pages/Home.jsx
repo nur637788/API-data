@@ -37,7 +37,7 @@ function Home() {
   };
 
   return (
-    <div id='up' className='mt-14 bg-white'>
+    <div id='up' className='mt-12 bg-white'>
       {/* Hero Section */}
       <Hero />
 

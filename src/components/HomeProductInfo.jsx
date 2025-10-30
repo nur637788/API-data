@@ -22,7 +22,7 @@ const HomeProductInfo = () => {
   const { thumbnail, title, price, description, rating, category, stock, brand } = product;
 
   return (
-    <div className='mt-20  bg-white p-5 '>
+    <div className='mt-20  bg-white p-5 min-h-screen'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         {/* image */}
         <div className=''>

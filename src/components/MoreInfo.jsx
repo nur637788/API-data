@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const MoreInfo = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const MoreInfo = () => {
   const { image, title, price, description, rate, rating, category } = product;
   return (
     <div className='mt-20  bg-white p-5'>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 p-5 min-h-screen '>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 items-center p-5 min-h-screen '>
         <div className=''>
           <img className='m-auto h-96 hover:animate-bounce ' src={image} loading='lazy' alt={title} />
         </div>
@@ -67,6 +67,11 @@ const MoreInfo = () => {
       <div className='max-w-[700px] m-auto py-10'>
         <b>Description:</b>
         <p>{description}</p>
+      </div>
+      <div className=" mt-5">
+        <Link to="/products" className="bg-pink-600 hover:bg-pink-700 rounded px-5 py-1  underline">
+          ← Back
+        </Link>
       </div>
     </div>
   )

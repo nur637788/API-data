@@ -47,117 +47,121 @@ function LoginForm() {
     };
 
     return (
-        <div className="p-6 mt-20 my-5  max-w-md mx-auto bg-white shadow-lg rounded-xl">
-            <h2 className="text-2xl font-bold text-center mb-4">
-                {isLogin ? " Login Form" : "Register Form"}
-            </h2>
+        <div className='min-h-screen '>
+            <div className="p-6 mt-20 my-5  max-w-md mx-auto bg-white shadow-lg rounded-xl">
+                <h2 className="text-2xl font-bold text-center mb-4">
+                    {isLogin ? " Login Form" : "Register Form"}
+                </h2>
 
-            {!isLogin ? (
-                <form onSubmit={handleRegister}>
-                    <label>Full Name:</label>
-                    <input
-                        className="border rounded w-full p-2 mb-2"
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        placeholder="Enter your name" required
-                        onChange={handleChange} />
+                {!isLogin ? (
+                    <form onSubmit={handleRegister}>
+                        <label>Full Name:</label>
+                        <input
+                            className="border rounded w-full p-2 mb-2"
+                            type="text"
+                            name="name"
+                            value={form.name}
+                            placeholder="Enter your name" required
+                            onChange={handleChange} />
 
-                    <label>User Name:</label>
-                    <input
-                        className="border rounded w-full p-2 mb-2"
-                        type="text"
-                        name="username"
-                        value={form.username}
-                        placeholder="@username" required
-                        onChange={handleChange} />
+                        <label>User Name:</label>
+                        <input
+                            className="border rounded w-full p-2 mb-2"
+                            type="text"
+                            name="username"
+                            value={form.username}
+                            placeholder="@username" required
+                            onChange={handleChange} />
 
-                    <label>Email:</label>
-                    <input
-                        className="border rounded w-full p-2 mb-2"
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        placeholder="Enter your email" required
-                        onChange={handleChange}
-                    />
+                        <label>Email:</label>
+                        <input
+                            className="border rounded w-full p-2 mb-2"
+                            type="email"
+                            name="email"
+                            value={form.email}
+                            placeholder="Enter your email" required
+                            onChange={handleChange}
+                        />
 
-                    <label>Password:</label>
-                    <input
-                        className="border rounded w-full p-2 mb-2"
-                        type="password"
-                        name="password"
-                        value={form.password}
-                        placeholder="Enter your password" required
-                        onChange={handleChange}
-                    />
+                        <label>Password:</label>
+                        <input
+                            className="border rounded w-full p-2 mb-2"
+                            type="password"
+                            name="password"
+                            value={form.password}
+                            placeholder="Enter your password" required
+                            onChange={handleChange}
+                        />
 
-                    <input
-                        type="checkbox"
-                        name="checkbox"
-                        checked={form.checkbox} required
-                        onChange={(e) => setForm({ ...form, checkbox: e.target.checked })}
-                    />
-                    <label className="ml-2">Accept Terms & Privacy</label>
+                        <input
+                            type="checkbox"
+                            name="checkbox"
+                            checked={form.checkbox} required
+                            onChange={(e) => setForm({ ...form, checkbox: e.target.checked })}
+                        />
+                        <label className="ml-2">Accept Terms & Privacy</label>
 
 
-                    <button
-                        type="submit"
-                        className="bg-green-500 text-white px-4 py-2 rounded w-full mt-3">
-                        Register
-                    </button>
+                        <button
+                            type="submit"
+                            className="bg-green-500 text-white px-4 py-2 rounded w-full mt-3">
+                            Register
+                        </button>
 
-                    <p className="mt-3 text-center">
-                        Already have an account?{" "}
-                        <span
-                            onClick={() => setIsLogin(true)}
-                            className="text-blue-500 cursor-pointer"
+                        <p className="mt-3 text-center">
+                            Already have an account?{" "}
+                            <span
+                                onClick={() => setIsLogin(true)}
+                                className="text-blue-500 cursor-pointer"
+                            >
+                                Login
+                            </span>
+                        </p>
+                    </form>
+                ) : (
+                    <form onSubmit={hendelLogin}>
+                        <label>Email:</label>
+                        <input
+                            className="border rounded w-full p-2 mb-2"
+                            type="email"
+                            name="email"
+                            value={form.email}
+                            placeholder="Enter your email"
+                            onChange={handleChange}
+                        />
+
+                        <label>Password:</label>
+                        <input
+                            className="border rounded w-full p-2 mb-2"
+                            type="password"
+                            name="password"
+                            value={form.password}
+                            placeholder="Enter your password"
+                            onChange={handleChange}
+                        />
+
+                        <button
+                            type="submit"
+                            className="bg-blue-500 text-white px-4 py-2 rounded w-full mt-3"
                         >
                             Login
-                        </span>
-                    </p>
-                </form>
-            ) : (
-                <form onSubmit={hendelLogin}>
-                    <label>Email:</label>
-                    <input
-                        className="border rounded w-full p-2 mb-2"
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        placeholder="Enter your email"
-                        onChange={handleChange}
-                    />
+                        </button>
 
-                    <label>Password:</label>
-                    <input
-                        className="border rounded w-full p-2 mb-2"
-                        type="password"
-                        name="password"
-                        value={form.password}
-                        placeholder="Enter your password"
-                        onChange={handleChange}
-                    />
-
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white px-4 py-2 rounded w-full mt-3"
-                    >
-                        Login
-                    </button>
-
-                    <p className="mt-3 text-center">
-                        Don’t have an account?{" "}
-                        <span
-                            onClick={() => setIsLogin(false)}
-                            className="text-green-500 cursor-pointer"
-                        >
-                            Register
-                        </span>
-                    </p>
-                </form>
-            )}
+                        <p className="mt-3 text-center">
+                            Don’t have an account?{" "}
+                            <span
+                                onClick={() => setIsLogin(false)}
+                                className="text-green-500 cursor-pointer"
+                            >
+                                Register
+                            </span>
+                        </p>
+                    </form>
+                )}
+            </div>
         </div>
+
+
     );
 }
 

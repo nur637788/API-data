@@ -21,8 +21,8 @@ const UsersList = () => {
     }, []);
     if (error == true) {
         return (
-            <div className='text-center'>
-                <h2 className='text-xl font-bold'>Error!</h2>
+            <div className='text-center mt-10 py-10 min-h-screen'>
+                <h2 className='text-xl font-bold text-red-600'>Error!</h2>
                 <p>Something went wrong!!!</p>
             </div>
         )
