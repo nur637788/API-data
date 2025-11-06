@@ -16,6 +16,9 @@ import MoreInfo from './components/MoreInfo';
 import HomeProductInfo from './components/HomeProductInfo';
 import LoginForm from './Pages/LoginForm';
 import UsersList from './components/UsersList';
+import Register from './components/Firebase/Register';
+import SingIn from './components/Firebase/SingIn';
+import UserContaxt from './UserContaxt';
 
 
 const router = createBrowserRouter([
@@ -55,6 +58,14 @@ const router = createBrowserRouter([
         path: "/users",
         element: <UsersList></UsersList>,
       },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/singIn",
+        element: <SingIn></SingIn>,
+      },
     ]
   },
 ]);
@@ -62,6 +73,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <UserContaxt>
+      <RouterProvider router={router} />
+    </UserContaxt>
   </StrictMode>,
 )

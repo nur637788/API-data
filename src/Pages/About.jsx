@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Admin from "../components/Firebase/Admin";
 
 
 function About() {
@@ -64,7 +65,6 @@ function About() {
             </div>
           </div>
         </div>
-
 
       </section>
     </div>
