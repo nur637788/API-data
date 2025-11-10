@@ -14,7 +14,7 @@ function SingIn() {
                     <Link to="" className='text-cyan-400'>Forgote Password</Link>
                 </div>
 
-                <input className='flex bg-cyan-500 p-2 rounded m-auto my-3 w-full' type="button" value="SingIn" />
+                <input className='flex bg-cyan-500 p-2 rounded m-auto my-3 w-full text-center' type="button" value="SingIn" />
 
                 <div className='flex items-center justify-center gap-2 pb-3'>
                     <hr className='border border-gray-300 w-full' />
@@ -22,9 +22,9 @@ function SingIn() {
                     <hr className='border border-gray-300 w-full' />
                 </div>
                 <div className=' flex flex-col gap-3 items-center'>
-                    <button className='bg-amber-200 px-2 py-1 rounded w-50 text-black flex items-center gap-2'> <FaGoogle /><span> Login With Google</span></button>
-                    <button className='bg-amber-200 px-2 py-1 rounded w-50 text-black flex items-center gap-2'><FaFacebook /><span> Login With Facebook</span></button>
-                    <button className='bg-amber-200 px-2 py-1 rounded w-50 text-black flex items-center gap-2'><FaGithub /><span> Login With GitHub</span></button>
+                    <button className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'> <FaGoogle /><span> Login With Google</span></button>
+                    <button className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'><FaFacebook /><span> Login With Facebook</span></button>
+                    <button className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'><FaGithub /><span> Login With GitHub</span></button>
                 </div>
                 <div className='mt-3 text-center'>Don't have an account? <Link to='/register' className='text-cyan-400'>Register </Link></div>
             </form>

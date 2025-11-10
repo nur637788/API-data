@@ -11,7 +11,7 @@ function Home() {
   useEffect(() => {
     fetch("/db.json")
       .then((res) => res.json())
-      .then((data) => { setProducts(data); setFilterData(data); })
+      .then((data) => { setProducts(data); setFilterData(data) })
       .catch((error) => {
         setError(true); console.log(error);
       });

@@ -38,7 +38,7 @@ function Register() {
     }
 
     return (
-        <div>
+        <div className='pt-10'>
 
             {/* User Information */}
             <Contaxt.Provider value={userInfo}>
@@ -55,7 +55,7 @@ function Register() {
             </Contaxt.Provider>
 
             {/* Register Form */}
-            <div className='py-3 px-3 bg-cyan-800 p-5 w-fit m-auto my-15 rounded text-white '>
+            <div className='py-3 px-3 bg-cyan-800 p-5 w-fit m-auto my-10 rounded text-white '>
                 <h2 className='text-center font-black text-xl py-2 text-white'>Register Page</h2>
                 <form onSubmit={handelRegister}>
                     <input className='flex bg-white p-2 rounded m-auto my-3 w-80 text-black' type="text" name="name" required placeholder='Your Full Name' />
@@ -76,9 +76,9 @@ function Register() {
                         <hr className='border border-gray-300 w-full' />
                     </div>
                     <div className=' flex flex-col gap-3 items-center'>
-                        <button onClick={handelButtonGoogle} className='bg-amber-200 px-2 py-1 rounded w-50 text-black flex items-center gap-2'> <FaGoogle /><span> Login With Google</span></button>
-                        <button className='bg-amber-200 px-2 py-1 rounded w-50 text-black flex items-center gap-2'><FaFacebook /><span> Login With Facebook</span></button>
-                        <button className='bg-amber-200 px-2 py-1 rounded w-50 text-black flex items-center gap-2'><FaGithub /><span> Login With GitHub</span></button>
+                        <button onClick={handelButtonGoogle} className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'> <FaGoogle /><span> Login With Google</span></button>
+                        <button className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'><FaFacebook /><span> Login With Facebook</span></button>
+                        <button className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'><FaGithub /><span> Login With GitHub</span></button>
                     </div>
                     <div className='mt-3 text-center'>Already have an account? <Link to='/singIn' className='text-cyan-400'>SingIn </Link></div>
                 </form>

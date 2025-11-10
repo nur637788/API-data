@@ -11,8 +11,7 @@ function Hero() {
                     style={{
                         backgroundImage:
                             "url(https://png.pngtree.com/background/20240413/original/pngtree-boho-living-room-with-sun-a-3d-rendered-illustration-of-modern-picture-image_8475402.jpg)",
-                    }}
-                >
+                    }}>
                     <div className="flex flex-col items-center justify-center text-black px-4">
                         <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                         <p className="mb-5 text-2xl">
@@ -25,7 +24,7 @@ function Hero() {
                 {/*Discount Card 1  */}
                 <div className='py-10 grid grid-cols-1 md:grid-cols-2 gap-4'>
                     <div className="max-w-[100%] max-h-[100%]">
-                        <div className='hero w-[100%] h-[100%] py-20'
+                        <div className='hero w-[100%] h-[100%] py-20 bg-no-repeat'
                             style={{ backgroundImage: "url( https://img.lovepik.com/bg/20240423/Exquisite-3D-Render-Minimalist-Living-Room-with-Stylish-Wooden-TV_7230155_wh1200.jpg )" }}>
 
                             <div className='px-8 space-y-4 text-white'>
@@ -39,7 +38,7 @@ function Hero() {
 
                     {/*Discount Card 2  */}
                     <div className="max-w-[100%] max-h-[100%]">
-                        <div className='hero w-[100%] h-[100%] py-20'
+                        <div className='hero w-[100%] h-[100%] py-20 '
                             style={{ backgroundImage: "url( https://img.freepik.com/premium-photo/modern-decoration-mock-up-interior-design-living-room-black-wall-texture-background_221619-1531.jpg )" }}>
 
                             <div className='px-8 space-y-4 text-white'>
