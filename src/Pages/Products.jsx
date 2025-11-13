@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Product from "../components/Product";
 
 function Products() {
+  
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false)
 
@@ -22,10 +23,12 @@ function Products() {
   }
 
   return (
-    <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-5 gap-y-8 mx-5 md:mx-10 my-10 min-h-screen">
-      {products.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
+    <div>
+      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-5 gap-y-8 mx-5 md:mx-10 my-10 min-h-screen">
+        {products.map((product) => (
+          <Product key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }

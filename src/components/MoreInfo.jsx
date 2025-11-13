@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, Links, useParams } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../components/Redux/CartSlice"
 
 const MoreInfo = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -17,12 +20,12 @@ const MoreInfo = () => {
   }
   const { image, title, price, description, rate, rating, category } = product;
   return (
-    <div className='mt-20  bg-white p-5'>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 items-center p-5 min-h-screen '>
+    <div className='mt-5  bg-white p-5'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 items-center p-5 '>
         <div className=''>
-          <img className='m-auto h-96 hover:animate-bounce ' src={image} loading='lazy' alt={title} />
+          <img className='m-auto h-96 hover:scale-105 duration-300 ' src={image} loading='lazy' alt={title} />
         </div>
-        <div className='text-center bg-gray-100 rounded-xl shadow-2xl px-5 py-5 '>
+        <div className='text-center bg-gray-100 rounded-xl shadow-sm hover:shadow-xl hover:scale-105 duration-300 px-5 py-5 '>
           <div className='flex justify-between items-center gap-5 m-auto md:text-2xl'>
             <h1 className='font-bold'>Name: </h1>
             <h1>{title}</h1>
@@ -58,8 +61,9 @@ const MoreInfo = () => {
             <h1>Available</h1>
           </div><hr />
 
-          <div className='py-5'>
-            <button className='px-10 py-2 bg-blue-700 rounded-md hover:font-bold hover:bg-blue-900 hover:text-white transition duration-300'>Shop Now</button>
+          <div className='flex gap-5 justify-center pt-5'>
+            <button onClick={() => dispatch(addToCart(product))} className='px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 hover:scale-105 transition duration-300 cursor-pointer'>Add to Cart</button>
+            <Link to="/shopnow" className='px-4 py-2 bg-pink-700 rounded text-white hover:bg-pink-900 hover:scale-105 transition duration-300 '>Shop Now</Link>
           </div>
 
         </div>

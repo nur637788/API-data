@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-
+import { useParams, Link, Links } from "react-router-dom";
+import { addToCart } from "../components/Redux/CartSlice"
+import { useDispatch } from 'react-redux';
 const HomeProductInfo = () => {
+  const dispatch = useDispatch()
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -22,14 +24,14 @@ const HomeProductInfo = () => {
   const { thumbnail, title, price, description, rating, category, stock, brand } = product;
 
   return (
-    <div className='mt-20  bg-white p-5 min-h-screen'>
+    <div className='mt-20  bg-white p-5'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         {/* image */}
         <div className=''>
-          <img className='m-auto bg-gray-100 rounded-xl shadow-2xl h-96 w-full hover:animate-bounce ' src={thumbnail} loading="lazy" alt={title} />
+          <img className='m-auto bg-gray-100 rounded-xl shadow-2xl h-96 w-full hover:scale-90 duration-300 ' src={thumbnail} loading="lazy" alt={title} />
         </div>
         {/* Title */}
-        <div className='text-center bg-gray-100 rounded-xl shadow-2xl px-5 py-5'>
+        <div className='text-center bg-gray-100 rounded-xl shadow-sm hover:shadow-xl hover:scale-95 duration-300 px-5 py-5'>
           <div className='flex justify-between items-center gap-5 m-auto md:text-2xl'>
             <h1 className='font-bold'>Name: </h1>
             <h1>{title}</h1>
@@ -65,8 +67,9 @@ const HomeProductInfo = () => {
             <h1>{price}$</h1>
           </div><hr />
           {/* Shop now button */}
-          <div className='py-5'>
-            <button className='px-10 py-2 bg-blue-700 rounded-md hover:font-bold hover:bg-blue-900 hover:text-white transition duration-300'>Shop Now</button>
+          <div className='pt-5 flex justify-center gap-5'>
+            <button onClick={() => dispatch(addToCart(product))} className='px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 hover:scale-105 transition duration-300 cursor-pointer'>Add to Cart</button>
+            <Link to="/shopnow" className='px-4 py-2 bg-pink-700 rounded text-white hover:bg-pink-900 hover:scale-105 transition duration-300 cursor-pointer'>Shop Now</Link>
           </div>
 
         </div>

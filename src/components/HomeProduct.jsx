@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { addToCart } from "../components/Redux/CartSlice"
+import { useDispatch } from 'react-redux';
 
 function HomeProduct({ products = {} }) {
   const { title, thumbnail, id, } = products;
+  const dispatch = useDispatch();
 
   if (!title || !thumbnail) return null;
 
@@ -19,12 +22,14 @@ function HomeProduct({ products = {} }) {
           <h1 className='text-center py-3 text-md font-semibold text-gray-800'>
             {title}
           </h1>
-
-          <Link to={`/home/${id}`}>
-            <button className='bg-blue-700 w-full py-2 rounded-md text-white font-medium hover:bg-blue-900 hover:scale-95 duration-300 cursor-pointer'>
-              More Info
-            </button>
-          </Link>
+          <div className='flex gap-5 justify-between'>
+            <button onClick={() => dispatch(addToCart(products))} className='bg-amber-50 w-10 h-10 rounded-full hover:scale-105 transition duration-300 cursor-pointer'>🛒</button>
+            <Link to={`/home/${id}`}>
+              <button className='bg-blue-700 px-4 py-2 rounded-md text-white font-medium hover:bg-blue-900 hover:scale-95 duration-300 cursor-pointer'>
+                More Info
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

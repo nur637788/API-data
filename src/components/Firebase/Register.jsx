@@ -1,87 +1,151 @@
-import React, { createContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { FaFacebook, FaGoogle } from "react-icons/fa";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    signOut
+} from "firebase/auth";
 import { appp } from './firebaseInit';
 
-
-export const Contaxt = createContext()
 function Register() {
-    const [userInfo, setUserInfo] = useState(null)
-    const googleProvider = new GoogleAuthProvider();  // Google ar jonno...
-    const auth = getAuth(appp)   // Firebase Config 
+    const navigate = useNavigate();
+    const [userInfo, setUserInfo] = useState(null);
+    const googleProvider = new GoogleAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
+    const auth = getAuth(appp);
 
-    // email or password diye login
+    // ✅ Email or password diye Register
     const handelRegister = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                setUserInfo(result.user)
-                console.log(result.user)
+                setUserInfo(result.user);
+                alert("✅ Account Created Successfully!");
                 e.target.reset();
+                navigate("/singIn");
             })
             .catch((err) => {
-                console.log("some error", err)
+                console.error(err);
+                alert("❌ Something went wrong: " + err.message);
             });
-    }
+    };
 
-    // login with google
+    //  Google diye Login
     const handelButtonGoogle = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                setUserInfo(result.user)
-                console.log(result.user)
+                setUserInfo(result.user);
+                alert("✅ Logged in with Google!");
+                navigate("/singIn");
             })
-            .catch(console.error);
-    }
+            .catch((err) => {
+                console.error(err);
+                alert("❌ Google Login Failed: " + err.message);
+            });
+    };
+
+    //  Facebook diye Login
+    const handelButtonFacebook = () => {
+        signInWithPopup(auth, facebookProvider)
+            .then((result) => {
+                setUserInfo(result.user);
+                alert("✅ Logged in with Facebook!");
+                navigate("/singIn");
+            })
+            .catch((err) => {
+                console.error(err);
+                alert("❌ Facebook Login Failed: " + err.message);
+            });
+    };
+
+    // ✅ Logout Button
+    const handelLogoutButton = () => {
+        signOut(auth)
+            .then(() => {
+                setUserInfo(null);
+                alert("👋 Logged out successfully!");
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
 
     return (
-        <div className='pt-10'>
+        <div className='pt-10 my-10 min-h-screen text-white'>
 
-            {/* User Information */}
-            <Contaxt.Provider value={userInfo}>
-                {userInfo && (
-                    <div className='bg-amber-50 p-10 rounded w-fit m-auto'>
-                        <img className='h-full w-full rounded-full' src={userInfo.photoURL} alt={userInfo.displayName} />
-                        <h2>Name: {userInfo.displayName}</h2>
-                        <p>Email: {userInfo.email}</p>
-                        <p>ProviderId: {userInfo.providerId}</p>
-                        <p>UserUID: {userInfo.uid}</p>
-                        <p>emailVerified: {userInfo.emailVerified ? "Yes" : "No"}</p>
-                    </div>
-                )}
-            </Contaxt.Provider>
+            {/* ✅ User Info Card */}
+            {userInfo && (
+                <div className='bg-amber-50 text-black p-6 rounded w-fit m-auto mb-6 shadow-lg'>
+                    {userInfo.photoURL && (
+                        <img
+                            className='h-32 w-32 rounded-full m-auto mb-3 object-cover'
+                            src={userInfo.photoURL}
+                            alt={userInfo.displayName || "User"}
+                        />
+                    )}
+                    <h2 className='text-center font-bold text-lg'>Name: {userInfo.displayName || "N/A"}</h2>
+                    <p>Email: {userInfo.email}</p>
+                    <p>ProviderId: {userInfo.providerId}</p>
+                    <p>UID: {userInfo.uid}</p>
+                    <p>Email Verified: {userInfo.emailVerified ? "✅ Yes" : "❌ No"}</p>
 
-            {/* Register Form */}
-            <div className='py-3 px-3 bg-cyan-800 p-5 w-fit m-auto my-10 rounded text-white '>
-                <h2 className='text-center font-black text-xl py-2 text-white'>Register Page</h2>
+                    <button
+                        onClick={handelLogoutButton}
+                        className='mt-3 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-all'
+                    >
+                        Logout
+                    </button>
+                </div>
+            )}
+
+            {/* ✅ Register Form */}
+            <div className='py-5 px-6 bg-cyan-800 rounded-lg shadow-lg w-fit m-auto'>
+                <h2 className='text-center font-black text-2xl py-2'>Register Page</h2>
+
                 <form onSubmit={handelRegister}>
-                    <input className='flex bg-white p-2 rounded m-auto my-3 w-80 text-black' type="text" name="name" required placeholder='Your Full Name' />
-                    <input className='flex bg-white p-2 rounded m-auto w-80 text-black' type="email" name="email" required placeholder='Your Email' />
-                    <input className='flex bg-white p-2 rounded m-auto my-3 w-80 text-black' type="password" name="password" required placeholder='Password' />
-                    <input className='flex bg-white p-2 rounded m-auto w-80 text-black' type="password" name="rePassword" required placeholder='Re-Password' />
+                    <input className='block bg-white p-2 rounded mb-3 w-80 text-black' type="text" name="name" required placeholder='Your Full Name' />
+                    <input className='block bg-white p-2 rounded mb-3 w-80 text-black' type="email" name="email" required placeholder='Your Email' />
+                    <input className='block bg-white p-2 rounded mb-3 w-80 text-black' type="password" name="password" required placeholder='Password' />
+                    <input className='block bg-white p-2 rounded mb-3 w-80 text-black' type="password" name="rePassword" required placeholder='Re-Password' />
 
-                    <div className='mt-2 space-x-2'>
+                    <div className='mt-2 text-sm mb-3'>
                         <input type="checkbox" id='show-pass' required />
-                        <label htmlFor="show-pass">I'm Agrey <Link to="/tramandcondition" className='text-cyan-400'>Trms & Conditions</Link></label>
+                        <label htmlFor="show-pass" className='ml-2'>
+                            I agree to <Link to="/tramandcondition" className='text-cyan-300 underline'>Terms & Conditions</Link>
+                        </label>
                     </div>
 
-                    <button type='submit' className=' bg-cyan-500 p-2 rounded my-3 w-full '>Register</button>
-
-                    <div className='flex items-center justify-center gap-2 pb-3'>
-                        <hr className='border border-gray-300 w-full' />
-                        <span className='text-white'>or</span>
-                        <hr className='border border-gray-300 w-full' />
-                    </div>
-                    <div className=' flex flex-col gap-3 items-center'>
-                        <button onClick={handelButtonGoogle} className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'> <FaGoogle /><span> Login With Google</span></button>
-                        <button className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'><FaFacebook /><span> Login With Facebook</span></button>
-                        <button className='bg-amber-200 px-2 py-1 rounded w-55 text-black flex items-center gap-2'><FaGithub /><span> Login With GitHub</span></button>
-                    </div>
-                    <div className='mt-3 text-center'>Already have an account? <Link to='/singIn' className='text-cyan-400'>SingIn </Link></div>
+                    <button type='submit' className='bg-cyan-500 hover:bg-cyan-600 p-2 rounded w-full cursor-pointer font-semibold'>
+                        Register
+                    </button>
                 </form>
+
+                <div className='flex items-center justify-center gap-2 my-3'>
+                    <hr className='border-gray-400 w-full' />
+                    <span>or</span>
+                    <hr className='border-gray-400 w-full' />
+                </div>
+
+                {/* ✅ Social Login Buttons */}
+                <div className='flex flex-col gap-3'>
+                    <button onClick={handelButtonGoogle} className='bg-white text-black px-3 py-2 rounded flex items-center justify-center gap-2 hover:bg-gray-200'>
+                        <FaGoogle /> Login with Google
+                    </button>
+                    <button onClick={handelButtonFacebook} className='bg-blue-600 px-3 py-2 rounded flex items-center justify-center gap-2 hover:bg-blue-700'>
+                        <FaFacebook /> Login with Facebook
+                    </button>
+                </div>
+
+                <div className='mt-4 text-center'>
+                    Already have an account? <Link to='/singin' className='text-cyan-300 hover:underline'>Sign In</Link>
+                </div>
             </div>
         </div>
     )

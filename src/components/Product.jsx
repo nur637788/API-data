@@ -1,9 +1,11 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { addToCart } from "../components/Redux/CartSlice"
 
 function Product({ product }) {
   const { title, price, image, rating } = product
+  const dispatch = useDispatch();
 
   return (
     <div className="p-5 rounded-md shadow-blue-900 shadow-sm hover:shadow-red-950 bg-blue-200 flex flex-col justify-between h-full">
@@ -19,11 +21,14 @@ function Product({ product }) {
       </div>
 
       {/* Button always at bottom */}
-      <Link to={`/products/${product.id}`}>
-        <button className="bg-blue-600 w-full py-2 rounded-md hover:font-bold hover:bg-blue-800 hover:text-white hover:scale-95 duration-300">
-          More Info
-        </button>
-      </Link>
+      <div className='flex justify-between gap-1'>
+        <button onClick={() => dispatch(addToCart(product))} className='bg-gray-900 py-2 px-4 rounded-full hover:scale-105 cursor-pointer transition duration-300'>🛒</button>
+        <Link to={`/products/${product.id}`}>
+          <button className="bg-blue-600 py-2 px-4 rounded-full hover:bg-blue-800 hover:text-white hover:scale-95 duration-300 cursor-pointer">
+            More Info
+          </button>
+        </Link>
+      </div>
     </div>
 
   )

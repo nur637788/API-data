@@ -3,7 +3,7 @@ import SingIn from '../components/Firebase/SingIn'
 
 function LoginForm() {
     return (
-        <div className='min-h-screen'>
+        <div className=''>
             <SingIn></SingIn>
         </div>
     )

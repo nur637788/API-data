@@ -18,7 +18,10 @@ import LoginForm from './Pages/LoginForm';
 import UsersList from './components/UsersList';
 import Register from './components/Firebase/Register';
 import SingIn from './components/Firebase/SingIn';
-import UserContaxt from './UserContaxt';
+import { Provider } from 'react-redux';
+import { store } from './components/Redux/Store';
+import Cart from './components/CartPage';
+import ShopNow from './components/ShopNow';
 
 
 const router = createBrowserRouter([
@@ -66,6 +69,14 @@ const router = createBrowserRouter([
         path: "/singIn",
         element: <SingIn></SingIn>,
       },
+      {
+        path: "/cartpage",
+        element: <Cart></Cart>,
+      },
+      {
+        path: "/shopnow",
+        element: <ShopNow></ShopNow>,
+      },
     ]
   },
 ]);
@@ -73,8 +84,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <UserContaxt>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </UserContaxt>
+    </Provider>
   </StrictMode>,
 )

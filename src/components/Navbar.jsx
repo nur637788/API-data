@@ -13,13 +13,13 @@ const Navbar = () => {
   return (
     <div className='fixed z-10 top-0 left-0 right-0 py-3 bg-gray-300/90 text-black shadow'>
       <div className='flex gap-5 justify-between px-5 md:px-10'>
-        <h2 className='font-black text-green-500'><span className='text-pink-700'>API</span> DATA</h2>
+        <h2 className='font-black text-green-500 cursor-pointer'><span className='text-pink-700'>API</span> DATA</h2>
         <nav className='hidden md:block space-x-3 '>
           <Link to={'/'}>Home</Link>
           <Link to={'/about'}>About</Link>
           <Link to={'/products'}>Products</Link>
           <Link to={'/contact'}>Contact</Link>
-          <Link to={'/login'} className='bg-teal-600 hover:bg-teal-800 hover:scale-95 duration-300 px-5 py-2 rounded text-teal-50'>Login</Link>
+          <Link to={'/login'} className='bg-teal-500 hover:bg-teal-600 hover:scale-95 duration-300 px-5 py-2 rounded text-teal-50'>Login</Link>
         </nav>
 
         {/* Hamburger Icon */}
